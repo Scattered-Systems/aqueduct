@@ -11,6 +11,21 @@ publish = true
 repository = "https://gitlab.com/FL03/conduit"
 version = "0.1.0"
 
+[features]
+default = ["core"]
+full = ["core"]
+
+core = []
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+test = true
+
+[[bin]]
+bench = false
+name = "conduit"
+test = false
+
 [build-dependencies]
 
 [dependencies]

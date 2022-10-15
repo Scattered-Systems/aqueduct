@@ -2,6 +2,11 @@
 default-members = [
     "conduit",
 ]
+
+exclude = [
+    "examples/*"
+]
+
 members = [
     "conduit",
 ]
