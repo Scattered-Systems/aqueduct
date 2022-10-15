@@ -1,0 +1,6 @@
+[application]
+mode = "development"
+name = "Conduit"
+
+[storj]
+
