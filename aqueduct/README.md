@@ -4,6 +4,12 @@ Aqueduct implements the recently formalized tweakable sleeve, a novel sleeve ach
 
 ## Getting Started
 
+### _Import the crate_
+
+    aqueduct = "0.1.0"
+
+### _Basic Usage_
+
   use aqueduct
   
   fn main() {

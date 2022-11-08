@@ -1,6 +1,6 @@
 [workspace]
 default-members = [
-    "conduit",
+    "aqueduct",
 ]
 
 exclude = [
@@ -8,7 +8,7 @@ exclude = [
 ]
 
 members = [
-    "conduit",
+    "aqueduct",
 ]
 
 
