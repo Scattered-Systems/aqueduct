@@ -1,5 +1,4 @@
 job("Login & Test (crates)") {
-    env["TOKEN"] = Secrets("cargo_registry_token")
     startOn {
         gitPush { 
             branchFilter {
@@ -10,10 +9,11 @@ job("Login & Test (crates)") {
         schedule { cron("0 8 * * *") }
     }
     container(displayName = "Rust", image = "rust") {
+        env["CARGO_REGISTRY_TOKEN"] = Secrets("cargo_registry_token")
         shellScript {
             interpreter = "/bin/bash"
             content = """
-                cargo login ${'$'}TOKEN
+                cargo login ${'$'}CARGO_REGISTRY_TOKEN
                 cargo test --all-features
             """
         }
@@ -29,12 +29,12 @@ job("Publish (crates)") {
         }
     }
     container(displayName = "Rust", image = "rust") {
-        env["TOKEN"] = Secrets("cargo_registry_token")
+        env["CARGO_REGISTRY_TOKEN"] = Secrets("cargo_registry_token")
 
         shellScript {
             interpreter = "/bin/bash"
             content = """
-                cargo publish --all-features --color always --jobs 1 --token ${'$'}TOKEN --verbose -p aqueduct
+                cargo publish --all-features --color always --jobs 1 --token ${'$'}CARGO_REGISTRY_TOKEN --verbose -p aqueduct
             """
         }
     }
