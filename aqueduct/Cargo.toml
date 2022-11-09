@@ -10,7 +10,7 @@ name = "aqueduct"
 publish = true
 readme = "README.md"
 repository = "https://github.com/scattered-systems/aqueduct"
-version = "0.1.0"
+version = "0.0.0"
 
 [features]
 default = ["core"]

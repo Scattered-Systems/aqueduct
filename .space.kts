@@ -1,4 +1,5 @@
-job("Test (crates)") {
+job("Login & Test (crates)") {
+    env["TOKEN"] = Secrets("cargo_registry_token")
     startOn {
         gitPush { 
             branchFilter {
@@ -12,10 +13,7 @@ job("Test (crates)") {
         shellScript {
             interpreter = "/bin/bash"
             content = """
-                apt-get update -y && apt-get upgrade -y
-                apt-get install -y protobuf-compiler
-                rustup default nightly && rustup target add wasm32-unknown-unknown --toolchain nightly
-                cargo login ${'$'}CARGO_REGISTRY_TOKEN
+                cargo login ${'$'}TOKEN
                 cargo test --all-features
             """
         }
@@ -31,13 +29,12 @@ job("Publish (crates)") {
         }
     }
     container(displayName = "Rust", image = "rust") {
+        env["TOKEN"] = Secrets("cargo_registry_token")
+
         shellScript {
             interpreter = "/bin/bash"
             content = """
-                apt-get update -y && apt-get upgrade -y
-                apt-get install -y protobuf-compiler
-                rustup default nightly && rustup target add wasm32-unknown-unknown --toolchain nightly
-                cargo publish --all-features --color always --jobs 1 --token ${'$'}CARGO_REGISTRY_TOKEN --verbose -p aqueduct
+                cargo publish --all-features --color always --jobs 1 --token ${'$'}TOKEN --verbose -p aqueduct
             """
         }
     }
