@@ -1,23 +1,18 @@
 [package]
 authors = ["FL03 <jo3mccain@icloud.com> (https://github.com/FL03)"]
 categories = []
-description = "aqueduct is a dynamic encryption mechanism suitable for the dynamic runtime environment empolyed throughout scsys"
+description = "aqueduct-sleeves implements the novel tweakable sleeve recently formalized by researchers at IOHK"
 edition = "2021"
 homepage = "https://github.com/scattered-systems/aqueduct/wiki"
 keywords = []
 license = "Apache-2.0"
-name = "aqueduct"
+name = "aqueduct-sleeves"
 publish = true
-readme = "README.md"
 repository = "https://github.com/scattered-systems/aqueduct"
 version = "0.1.0"
 
 [features]
-default = ["sleeves"]
-full = ["sleeves"]
-
-core = []
-sleeves = ["aqueduct-sleeves/default"]
+default = []
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -26,7 +21,11 @@ test = true
 [build-dependencies]
 
 [dependencies]
-aqueduct-sleeves = { features = [], optional = true, path = "../sleeves", version = "0.1.0" }
+blake3 = "1.3.1"
+scsys = { features = ["full"], version = "0.1.36" }
+serde = { features = ["derive"], version = "1.0.149" }
+serde_json = "1.0.89"
+strum = { features = ["derive"], version = "0.24.1" }
 
 [dev-dependencies]
 
