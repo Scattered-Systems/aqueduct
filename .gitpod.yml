@@ -1,5 +1,10 @@
 tasks:
-  - init: sh scripts/setup.sh
+  - init: |
+      sudo apt update -y && sudo apt upgrade -y && sudo apt auoremove -y
+      rustup update
+      rustup install nightly
+      rustup component add clippy rustfmt --toolchain nightly
+      rustup target add wasm32-unknown-unknown wasm32-wasi --toolchain nightly
     command: cargo watch -x test --all
 
 

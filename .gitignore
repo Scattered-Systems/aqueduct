@@ -11,6 +11,7 @@
 
 **/.DS_STORE/
 **/.artifacts/data/
+**/.cache/
 **/.docker/data/
 **/.idea/
 **/.pytest_cache/
@@ -23,9 +24,7 @@
 **/dist/
 **/env/
 **/node_modules/
-**/pkg/
 **/target/
-**/tmp/
 **/venv/
 
 # File Extensions
@@ -55,6 +54,7 @@
 **/*.zip.*
 
 # Exceptions
+!**/.circleci/config.*
 !**/default.config.*
 !**/*.env.example
 !**/*.config.js
